@@ -1,24 +1,14 @@
-// Grab the HTTP and File system modules
-var http = require('http');
-var fs   = require('fs');
+// Load express package and create app
+var express = require('express');
+var app = express();
+var path = require('path');
 
-// Create our server using the HTTP module
-http.createServer(function(req, res){
+// Send index.html to the user
+app.get('/', function(req, res){
+    res.sendFile(path.join(__dirname + '/index.html'));
     
-    //write to the server. set config for response
-    res.writeHead(200, {
-        'Content-Type': 'text/html',
-        'Access-Controll-Allow-Origin': '*'
-    });
-    
-    //grab index.html from fs
-    var readStream = fs.createReadStream(__dirname + '/index.html');
-    
-    //send the file to the user
-    readStream.pipe(res);
-    
-}).listen(process.env.PORT, process.env.IP); //for C9, bind to $PORT and $IP
+});
 
-// Info
-console.log('Visit me at http://localhost:' + process.env.PORT);
-
+// Fire da server!
+app.listen(process.env.PORT, process.env.IP);
+console.log("Le server iz listening");
