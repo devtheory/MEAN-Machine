@@ -53,6 +53,19 @@ adminRouter.get('/posts', function(req, res){
     res.send("Here are the posts");
 });
 
+
+// Login routes
+app.route('/login') // app.route is a shortcut to doing express.Router()
+  // show the form http://localhost:1337/login
+  .get(function(req, res){
+    res.send("Login form here");
+  })
+  .post(function(req, res){
+    console.log("processing the form here");
+    res.send("Posting the form here");
+  });
+
+
 // apply the routes to our application
 app.use('/admin', adminRouter); //admin creates the root for all routes defined for adminRouter
 
