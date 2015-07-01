@@ -2,6 +2,8 @@
 var express = require('express');
 var app = express();
 var path = require('path');
+var mongoose = require('mongoose');
+mongoose.connect('mongodb:' + process.env.PORT + "/test");
 
 // Send index.html to the user
 app.get('/', function(req, res){
